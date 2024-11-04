@@ -1,0 +1,2 @@
+//kho nguồn, kho đích, kho hiện tại, xe, số đơn, ds đơn, trạng thái vận chuyển, thời gian vận chuyển
+khoA, khoC, khoB, Xe01, 

@@ -1,0 +1,4 @@
+// mã block, mã kho, số đơn, ds đơn
+B01, khoA, 2, DH01, DH02
+B01, khoB, 2, DH01, DH02
+B02, khoA, 2, DH01, DH02
