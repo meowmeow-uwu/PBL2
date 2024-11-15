@@ -1,2 +1,21 @@
-//kho nguồn, kho đích, kho hiện tại, xe, số đơn, ds đơn, trạng thái vận chuyển, thời gian vận chuyển
-khoA, khoC, khoB, Xe01, 
+Xe01
+3
+Kho01
+Kho02
+Kho03
+
+Xe02
+3
+Kho01
+Kho02
+Kho03
+
+Xe03
+2
+Kho01
+Kho02
+
+Xe04
+2
+Kho01
+Kho02

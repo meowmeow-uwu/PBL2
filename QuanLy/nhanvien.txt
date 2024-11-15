@@ -1,4 +1,4 @@
-//mã nhân viên, user, pass, mã kho
-NV01, user1, 123456, KhoA
-NV02, user2, 123456, khoB
-NV03, user3, 123456, khoC
+NV01 user1 123456 Kho01
+NV02 user2 123456 Kho03
+NV03 user3 123456 Kho01
+NV04 user3 123456 Kho02

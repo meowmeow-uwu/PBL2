@@ -1,73 +1,71 @@
-#include <iostream>
-#include "dh.h"
-#include "block.h"
-#include "hash.h"
-using namespace std;
+#include "xe.h"
 
 #ifndef kho_h
 #define kho_h
 
-class Kho: public Block{
-    private:
-        string maKho;
-        unsigned int soblock;
-        HashTable<Block, soblock> block;
-       
-    public:
-        Kho(string name="none", unsigned int num =0, HashTable<Block, soblock> block): maKho(name), soblock(num){
-        };
+class Kho 
+{
+private:
+    string maKho;
+    unsigned int sodh;
+    unsigned int soxe;
+    HashTable<DonHang> donhang{sodh};
+    HashTable<Truck> xe{soxe};
 
-        void addDH(DonHang& newDH){
-            DH.insert(newDH);
-            string khoDich = newDH.getKhoDich();
-            Block* block = (Block*)blocks.find(khoDich);
-            if(block == NULL){
-                block = new Block(khoDich);
-                blocks.insert(*block);
-            }
-            block->addDH(newDH);
-            newDH.setKhoHT(this->name);
-        }
+public:
+    Kho(string maKho = "none", unsigned int sodh = 0, unsigned int soxe = 0)
+        : maKho(maKho), sodh(sodh), donhang{sodh}, soxe(soxe), xe{soxe} {};
+    string getMa() { return maKho; }
 
-        bool removeDH(string& maDH){
-            DonHang* dh = DH.find(maDH);
-            if(dh){
-                string khoDich = dh->getKhoDich();
-                Block* block = (Block*)blocks.find(khoDich);
-                if(block){
-                    block->removeDH(maDH);
-                }
-                return DH.erase(maDH);
-            }
+    bool docKho(ifstream &file)
+    {
+
+        if (!file)
+        {
+            cout << "Khong the doc file " << endl;
             return false;
+        }
+        file >> maKho;
+        file >> sodh;
+        donhang = HashTable<DonHang>(sodh);
 
+        for (unsigned int i = 0; i < sodh; ++i)
+        {
+            string maDH;
+            file >> maDH;
+            DonHang newDH(maDH);
+            donhang.insert(newDH);
         }
 
-        DonHang* searchDH(const string& maDH){
-            return DH.find(maDH);
+        file >> soxe;
+        xe = HashTable<Truck>(soxe);
+        for (unsigned int i = 0; i < soxe; ++i)
+        {
+            string maXe;
+            file >> maXe;
+            Truck newXe(maXe);
+            xe.insert(newXe);
         }
+        file.ignore();
+        return true;
+    }
+
+    void show()
+    {
+        // ifstream file;
+        // if (!docKho(file))
+        // {
+        //     cout << "loi";
+        //     return;
+        // }
+        cout << maKho << endl;
+        for (int i = 0; i < sodh; i++)
+            cout << donhang.getTableEntry(i)->data.getMa() << endl;
+        for (int i = 0; i < soxe; i++)
+            cout << xe.getTableEntry(i)->data.getMa() << endl;
+    }
 
 
-
-
-
-
-        //
-
-        void showBlock(const string& kho){
-            for(int i = 0; i < TABLE_SIZE; i++){
-                Node<Block>* entry = blocks.getTableEntry(i);
-                while(entry){
-                    Block* block = &entry->data;
-                    if(block->getKhoDen() == kho){
-                        cout<<"Block: "<<block->getKhoDen()<<endl;
-                        block->danhSach();
-                    }
-                    entry = entry->next;
-                }
-            }
-        }
-        string getName(){return name;}
 };
 
 #endif

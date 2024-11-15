@@ -1,4 +1,20 @@
-//mã xe, số đơn, ds đơn
-Xe01, 3, DH01, DH02, DH03
-Xe02, 3, DH01, DH02, DH03
-Xe03, 3, DH01, DH02, DH03
+X01 50
+3
+DH01
+DH02
+DH03
+
+X02 30
+3
+DH01
+DH02
+DH03
+
+X03 40
+3
+DH01
+DH02
+DH03
+
+X04 50
+0

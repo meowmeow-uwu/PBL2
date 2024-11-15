@@ -1,36 +1,53 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 #ifndef nv_h
 #define nv_h
 
-//thong tin nhan vien
-class NhanVien{
-    private:
-        string maNV;
-        string user;
-        string pass;
-        string maKho;
-    public:
-        NhanVien(string username="", string password="", string kho="") : user(username), pass(password), maKho(kho){};
-        void login();
-};
-//dang nhap
-void NhanVien::login(){
-    int check;
-    do{
-        cout<< "User Name: ";
-        cin>>user;
-        cout<< "Password: ";
-        cin>>pass;
-        if(user == "admin" && pass== "123"){
-            check = 1;
-            cout<<"Welcome "+user+" login success!!"<<endl;
-        }else{
-            check = 0;
-            cout<<"Thong tin nhap vao sai vui long nhap lai!!!"<<endl;
+// thong tin nhan vien
+class NhanVien
+{
+private:
+    string maNV;
+    string user;
+    string pass;
+    string maKho;
+
+public:
+    NhanVien(string maNV = "", string username = "", string password = "", string kho = "") : maNV(maNV),user(username), pass(password), maKho(kho) {};
+    string getKho() { return maKho; }
+    string getMa() { return maNV; }
+    bool login()
+    {
+        string u, p;
+        if (u == user && p == pass)
+            return true;
+        return false;
+    };
+
+    bool docNV(ifstream &file)
+    {
+
+        if (!file)
+        {
+            cout << "Khong the doc file " << endl;
+            return false;
         }
-    }while(check == 0);
-}
+        file >> maNV >> user >> pass >> maKho;
+        return true;
+    }
+
+    void show()
+    {
+        // ifstream file;
+        // if (!docKho(file))
+        // {
+        //     cout << "loi";
+        //     return;
+        // }
+        cout << maNV << " " << user << "  " << pass << " " << maKho << endl;
+    }
+};
 
 #endif
